@@ -1,13 +1,8 @@
 "use client"
 import { useState, useEffect } from "react"
 import { createSupabaseBrowserClient } from "@/lib/supabase"
-import { useRouter, useSearchParams } from "next/navigation"
 
 export default function LoginPage() {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const redirect = searchParams.get("redirect") ?? "/dashboard"
-
   const supabase = createSupabaseBrowserClient()
   const [email, setEmail]       = useState("")
   const [password, setPassword] = useState("")
@@ -25,14 +20,12 @@ export default function LoginPage() {
     const { error } = await supabase.auth.signInWithPassword({ email, password })
 
     if (error) {
-      // Deliberately vague — don't reveal whether email or password was wrong
       setError("Invalid credentials. Please try again.")
       setLoading(false)
       return
     }
 
-    router.push(redirect)
-    router.refresh()
+    window.location.href = "/dashboard"
   }
 
   return (
@@ -53,7 +46,6 @@ export default function LoginPage() {
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
           style={{ background: "radial-gradient(circle, rgba(99,179,237,0.06) 0%, transparent 70%)" }}
         />
-        {/* Decorative corner hexagons */}
         <svg className="absolute top-8 left-8 opacity-10" width="80" height="80" viewBox="0 0 80 80" fill="none">
           <polygon points="40,4 72,22 72,58 40,76 8,58 8,22" stroke="#63b3ed" strokeWidth="1" fill="none" />
           <polygon points="40,16 62,28 62,52 40,64 18,52 18,28" stroke="#63b3ed" strokeWidth="0.5" fill="none" />
@@ -85,7 +77,6 @@ export default function LoginPage() {
               className="w-9 h-9 rounded-xl border border-blue/30 flex items-center justify-center relative"
               style={{ background: "rgba(99,179,237,0.08)" }}
             >
-              {/* Hexagon icon */}
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                 <polygon
                   points="9,1 16,5 16,13 9,17 2,13 2,5"
@@ -95,7 +86,6 @@ export default function LoginPage() {
                 />
                 <circle cx="9" cy="9" r="2" fill="#63b3ed" />
               </svg>
-              {/* Pulse ring */}
               <div
                 className="absolute inset-0 rounded-xl border border-blue/30"
                 style={{ animation: "ping 3s cubic-bezier(0,0,0.2,1) infinite" }}
@@ -205,7 +195,6 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Version tag */}
         <p className="text-center text-[9px] font-mono text-[var(--text-muted)] mt-4 tracking-widest">
           NEXUS v0.1 · PHASE 2
         </p>
