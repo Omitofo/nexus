@@ -1,0 +1,17 @@
+node_modules
+.pnpm-store
+.next
+dist
+build
+.turbo
+.env
+.env.local
+.env.*.local
+.env.production
+supabase/.branches
+supabase/.temp
+.DS_Store
+Thumbs.db
+*.log
+.vscode
+.idea

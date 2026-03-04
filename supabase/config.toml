@@ -1,0 +1,19 @@
+# This file is only needed if you use the Supabase CLI with Docker for local dev.
+# For cloud-only development (recommended), you can ignore this file entirely.
+# See SETUP.md for the cloud setup guide.
+#
+# If you ever want local dev with Docker:
+#   npm install -g supabase
+#   supabase start
+#
+[api]
+port = 54321
+[db]
+port = 54322
+[studio]
+port = 54323
+[auth]
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["http://localhost:3000/**"]
+[[auth.email]]
+enable_confirmations = false

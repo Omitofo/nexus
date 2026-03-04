@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── NEXUS Design Tokens ──────────────────────────────────────────── */
+:root {
+  --bg-void:        #070810;
+  --bg-deep:        #0c0f1a;
+  --bg-panel:       #111625;
+  --bg-card:        #161c2e;
+  --bg-hover:       #1d2540;
+  --border:         rgba(255, 255, 255, 0.07);
+  --border-active:  rgba(99, 179, 237, 0.3);
+  --accent-primary: #63b3ed;
+  --accent-gold:    #f6c90e;
+  --accent-green:   #48bb78;
+  --accent-red:     #fc5c5c;
+  --accent-purple:  #9f7aea;
+  --accent-cyan:    #4fd1c5;
+  --text-primary:   #e8edf5;
+  --text-secondary: #8892aa;
+  --text-muted:     #4a5568;
+  --node-gas:       #f6c90e;
+  --node-trade:     #63b3ed;
+  --node-process:   #9f7aea;
+  --node-transport: #48bb78;
+  --node-terminal:  #4fd1c5;
+  --node-client:    #fc5c5c;
+}
+
+/* ── Global background grid texture ──────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(99, 179, 237, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 179, 237, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Scrollbars ───────────────────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99,179,237,0.15) transparent;
+}
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(99,179,237,0.15); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(99,179,237,0.3); }
+
+/* ── Focus styles ─────────────────────────────────────────────────── */
+*:focus-visible {
+  outline: 2px solid rgba(99, 179, 237, 0.5);
+  outline-offset: 2px;
+}
+
+/* ── React Flow overrides ─────────────────────────────────────────── */
+.react-flow__renderer { border-radius: 0; }
+.react-flow__controls {
+  background: rgba(11,15,26,0.9) !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+}
+.react-flow__controls-button {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(255,255,255,0.07) !important;
+  color: #8892aa !important;
+  transition: background 0.15s, color 0.15s !important;
+}
+.react-flow__controls-button:hover {
+  background: rgba(99,179,237,0.08) !important;
+  color: #63b3ed !important;
+}
+.react-flow__controls-button:last-child { border-bottom: none !important; }
+.react-flow__minimap { border-radius: 12px !important; overflow: hidden; }
+
+/* ── Utility animations ───────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes flow {
+  from { stroke-dashoffset: 24; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(99,179,237,0.2); }
+  50%       { box-shadow: 0 0 20px rgba(99,179,237,0.5); }
+}
+
+.animate-in { animation: fadeUp 0.4s ease both; }
+.fade-in    { animation: fadeIn 0.3s ease both; }
