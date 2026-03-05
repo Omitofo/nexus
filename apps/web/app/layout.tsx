@@ -1,14 +1,19 @@
-import { redirect } from "next/navigation"
-import { createSupabaseServerClient } from "@/lib/supabase-server"
-import { AppShell } from "@/components/layout/AppShell"
+import type { Metadata } from "next"
+import "./globals.css"
 
-export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const supabase = await createSupabaseServerClient()
-  const { data: { user } } = await supabase.auth.getUser()
+export const metadata: Metadata = {
+  title: "Nexus — Supply Chain Platform",
+  description: "Intelligent supply chain orchestration",
+}
 
-  // Middleware already handles the redirect, but this is a
-  // server-side safety net in case middleware is bypassed.
-  if (!user) redirect("/login")
-
-  return <AppShell>{children}</AppShell>
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  )
 }
