@@ -3,7 +3,7 @@ import { createSupabaseServerClient } from "@/lib/supabase-server"
 import { AppShell } from "@/components/layout/AppShell"
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const supabase = createSupabaseServerClient()  // ← no await, function is now synchronous
+  const supabase = createSupabaseServerClient() // NO await — function is now sync
   const { data: { user } } = await supabase.auth.getUser()
 
   if (!user) redirect("/login")

@@ -6,8 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 export default function LoginPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const redirectTo = searchParams.get("redirect") ?? "/dashboard"
-
+const redirectTo = searchParams.get("redirect") ?? "/dashboard"
   const supabase = createSupabaseBrowserClient()
   const [email, setEmail]       = useState("")
   const [password, setPassword] = useState("")
@@ -17,7 +16,7 @@ export default function LoginPage() {
 
   useEffect(() => { setMounted(true) }, [])
 
-  async function handleLogin() {
+async function handleLogin() {
     if (!email || !password) return
     setLoading(true)
     setError(null)
@@ -30,11 +29,9 @@ export default function LoginPage() {
       return
     }
 
-    // refresh() re-runs server components with the new cookie,
-    // then push() navigates. This order prevents the middleware
-    // from seeing a stale unauthenticated state.
-    router.refresh()
-    router.push(redirectTo)
+    // Full page reload — guarantees the auth cookie is sent with the
+    // next server request before middleware checks it
+    window.location.href = redirectTo
   }
 
   return (

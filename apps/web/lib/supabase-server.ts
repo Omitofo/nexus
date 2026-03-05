@@ -1,10 +1,9 @@
-import { createServerClient } from "@supabase/ssr"
+import { createServerClient, type CookieMethodsServer } from "@supabase/ssr"
 import { cookies } from "next/headers"
+import type { CookieOptions } from "@supabase/ssr"
 
-// Use this in Next.js Server Components to get the current session.
-// Never use this in client components — use createSupabaseBrowserClient() instead.
 export function createSupabaseServerClient() {
-  const cookieStore = cookies()  // ← NO await — this is Next.js 14, cookies() is synchronous here
+  const cookieStore = cookies()
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -14,14 +13,13 @@ export function createSupabaseServerClient() {
         getAll() {
           return cookieStore.getAll()
         },
-        setAll(cookiesToSet) {
+        setAll(cookiesToSet: { name: string; value: string; options: CookieOptions }[]) {
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options)
             )
           } catch {
-            // Called from a Server Component — cookies are read-only.
-            // Middleware handles refresh, safe to ignore.
+            // Called from a Server Component — cookies are read-only. Safe to ignore.
           }
         },
       },
