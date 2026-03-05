@@ -1,9 +1,10 @@
 "use client"
 import { useState, useEffect } from "react"
 import { createSupabaseBrowserClient } from "@/lib/supabase"
-import { useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 
 export default function LoginPage() {
+  const router = useRouter()
   const searchParams = useSearchParams()
   const redirectTo = searchParams.get("redirect") ?? "/dashboard"
 
@@ -29,10 +30,11 @@ export default function LoginPage() {
       return
     }
 
-    // Full page navigation — guarantees the browser sends the new Supabase
-    // auth cookie with the request so middleware validates it correctly.
-    // router.push() is client-side and races against cookie propagation.
-    window.location.href = redirectTo
+    // refresh() re-runs server components with the new cookie,
+    // then push() navigates. This order prevents the middleware
+    // from seeing a stale unauthenticated state.
+    router.refresh()
+    router.push(redirectTo)
   }
 
   return (
@@ -83,12 +85,7 @@ export default function LoginPage() {
               style={{ background: "rgba(99,179,237,0.08)" }}
             >
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                <polygon
-                  points="9,1 16,5 16,13 9,17 2,13 2,5"
-                  stroke="#63b3ed"
-                  strokeWidth="1.5"
-                  fill="rgba(99,179,237,0.15)"
-                />
+                <polygon points="9,1 16,5 16,13 9,17 2,13 2,5" stroke="#63b3ed" strokeWidth="1.5" fill="rgba(99,179,237,0.15)" />
                 <circle cx="9" cy="9" r="2" fill="#63b3ed" />
               </svg>
               <div
@@ -103,12 +100,9 @@ export default function LoginPage() {
           </div>
 
           <h1 className="text-xl font-bold mb-1 text-white">Welcome back</h1>
-          <p className="text-sm text-[var(--text-secondary)] mb-7">
-            Sign in to your operator account
-          </p>
+          <p className="text-sm text-[var(--text-secondary)] mb-7">Sign in to your operator account</p>
 
           <div className="space-y-4">
-            {/* Email */}
             <div>
               <label className="block text-[10px] font-mono font-semibold text-[var(--text-muted)] uppercase tracking-widest mb-2">
                 Email
@@ -129,7 +123,6 @@ export default function LoginPage() {
               />
             </div>
 
-            {/* Password */}
             <div>
               <label className="block text-[10px] font-mono font-semibold text-[var(--text-muted)] uppercase tracking-widest mb-2">
                 Password
@@ -150,7 +143,6 @@ export default function LoginPage() {
               />
             </div>
 
-            {/* Error */}
             {error && (
               <div
                 className="flex items-center gap-2.5 rounded-xl px-4 py-3"
@@ -161,7 +153,6 @@ export default function LoginPage() {
               </div>
             )}
 
-            {/* Submit */}
             <button
               onClick={handleLogin}
               disabled={loading || !email || !password}
