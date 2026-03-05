@@ -1,13 +1,14 @@
-"use client"
-import { useEffect } from "react"
-import { createSupabaseBrowserClient } from "@/lib/supabase"
+// app/page.tsx
+import { createServerSupabaseClient } from "@/lib/supabase"
+import { redirect } from "next/navigation"
 
-export default function RootPage() {
-  useEffect(() => {
-    const supabase = createSupabaseBrowserClient()
-    supabase.auth.getSession().then(({ data }) => {
-      window.location.href = data.session ? "/dashboard" : "/login"
-    })
-  }, [])
-  return null
+export default async function RootPage() {
+  const supabase = createServerSupabaseClient()
+  const { data } = await supabase.auth.getSession()
+
+  if (data.session) {
+    redirect("/dashboard")
+  } else {
+    redirect("/login")
+  }
 }
