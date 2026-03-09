@@ -1,3 +1,4 @@
+//apps/web/app/tenders/[id]/page.tsx
 // Individual tender detail page (Phase 3)
 // Shows tender info, quote list, and greedy results for one tender.
 "use client"

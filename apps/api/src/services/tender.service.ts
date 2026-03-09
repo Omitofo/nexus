@@ -1,3 +1,4 @@
+// apps/api/src/services/tender.service.ts
 // Tender data access layer. All DB calls go through here.
 import { supabaseAdmin } from "../config/supabase.js"
 import type { CreateTenderInput } from "@nexus/shared"

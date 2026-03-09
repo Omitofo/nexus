@@ -1,3 +1,4 @@
+//apps/web/lib/hooks/useSupabaseAuth.ts
 "use client"
 import { useEffect, useState, useCallback } from "react"
 import { createSupabaseBrowserClient } from "@/lib/supabase"

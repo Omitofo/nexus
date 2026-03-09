@@ -1,3 +1,4 @@
+//apps/api/src/middleware/auth.middleware.ts
 // Verifies Supabase JWT on every protected route.
 // Attaches the verified user to the request for downstream handlers.
 import { FastifyRequest, FastifyReply } from "fastify"

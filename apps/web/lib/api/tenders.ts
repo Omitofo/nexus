@@ -1,3 +1,4 @@
+//apps/web/lib/api/tenders.ts
 import { createSupabaseBrowserClient } from "@/lib/supabase"
 import type { Tender, CreateTenderInput } from "@nexus/shared"
 

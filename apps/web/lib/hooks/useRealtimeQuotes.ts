@@ -1,3 +1,5 @@
+// apps/web/lib/hooks/useRealtimeQuotes.ts
+
 // Subscribes to live quote updates for a tender using Supabase Realtime.
 // When any quote row changes in the database, the store is updated
 // and the UI re-renders automatically.

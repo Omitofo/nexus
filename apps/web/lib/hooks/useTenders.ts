@@ -1,3 +1,4 @@
+//apps/web/lib/hooks/useTenders.ts
 "use client"
 import { useEffect, useState } from "react"
 import { tenderApi } from "@/lib/api/tenders"

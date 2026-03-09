@@ -1,3 +1,5 @@
+//packages/shared/src/types/node.ts
+
 export type NodeType =
   | "GAS_SOURCE"
   | "TRADER"

@@ -1,3 +1,5 @@
+// apps/api/src/routes/quotes.routes.ts
+
 // Quote routes: broadcast RFQ and manual quote entry.
 import { FastifyInstance } from "fastify"
 import { requireOperator } from "../middleware/auth.middleware.js"

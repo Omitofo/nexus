@@ -1,3 +1,5 @@
+//packages/shared/src/types/quote.ts
+
 export type QuoteStatus = "SENT" | "PENDING" | "REPLIED" | "DECLINED" | "EXPIRED"
 
 export interface Quote {

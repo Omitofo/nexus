@@ -1,3 +1,4 @@
+//packages/shared/src/types/chain.ts
 export interface ChainScoreBreakdown {
   price: number
   risk: number

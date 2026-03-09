@@ -1,3 +1,4 @@
+//apps/web/app/tenders/page.tsx
 "use client"
 import { useTenderStore } from "@/lib/store/tenderStore"
 import { useUIStore } from "@/lib/store/uiStore"

@@ -1,3 +1,5 @@
+//packages/shared/src/types/user.ts
+
 export type UserRole = "operator" | "viewer" | "client"
 
 // Stored in public.profiles, linked 1-to-1 with Supabase auth.users

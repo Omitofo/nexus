@@ -1,3 +1,4 @@
+//apps/web/lib/types/index.ts
 // Frontend-specific type extensions and UI-only types.
 // Shared domain types live in packages/shared/src/types/.
 

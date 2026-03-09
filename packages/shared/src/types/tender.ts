@@ -1,3 +1,4 @@
+//packages/shared/types/tender.ts
 export type TenderType = "REAL" | "SANDBOX"
 
 export type TenderStatus =

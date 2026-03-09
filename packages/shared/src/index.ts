@@ -1,3 +1,4 @@
+//packages/share/src/index.ts
 // Central export - import from "@nexus/shared" in both apps
 export * from "./types/user"
 export * from "./types/tender"

@@ -1,3 +1,4 @@
+//apps/web/lib/store/tenderStore.ts
 // Active tender and tender list state.
 import { create } from "zustand"
 import type { Tender } from "@nexus/shared"

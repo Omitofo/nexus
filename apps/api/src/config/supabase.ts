@@ -1,3 +1,4 @@
+//apps/api/src/config/supabase.ts
 // Supabase admin client - backend only.
 // Uses SERVICE ROLE KEY: bypasses RLS. Trusted server actor.
 // NEVER import this into frontend code.

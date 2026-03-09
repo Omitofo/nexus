@@ -1,3 +1,5 @@
+// apps/api/src/services/quote.service.ts
+
 // Quote data access layer.
 import { supabaseAdmin } from "../config/supabase.js"
 import type { ManualQuoteInput } from "@nexus/shared"

@@ -1,3 +1,4 @@
+//apps/web/components/tenders/TenderCard.tsx
 "use client"
 import type { Tender } from "@nexus/shared"
 import { TenderTypeBadge, TenderStatusBadge, TenderBadge } from "./TenderBadge"
